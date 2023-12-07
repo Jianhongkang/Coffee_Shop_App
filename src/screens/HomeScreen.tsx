@@ -64,6 +64,12 @@ const getCoffeeByCategory = (category: string, data: any) => {
   return data.filter((item: any) => item.name === category);
 };
 
+console.log('====================================');
+console.log('test');
+console.log('====================================');
+
+console.log('happy day');
+
 const HomeScreen = () => {
   const CoffeeList = useStore((state: any) => state.CoffeeList);
   const BeanList = useStore((state: any) => state.BeanList);

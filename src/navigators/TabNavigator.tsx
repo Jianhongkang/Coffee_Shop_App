@@ -6,6 +6,7 @@ import CartScreen from '../screens/CartScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import {COLORS} from '../theme/theme';
 import CustomIcon from '../components/CustomIcon';
+import {BlurView} from '@react-native-community/blur';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,6 +18,9 @@ const TabNavigator = () => {
         tabBarHideOnKeyboard: true,
         tabBarShowLabel: false,
         tabBarStyle: styles.tabBarStyle,
+        tabBarBackground: () => (
+          <BlurView style={styles.BlurView} overlayColor="" blurAmount={15} />
+        ),
       }}>
       <Tab.Screen
         name="Home"
@@ -91,5 +95,12 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.primaryBlackRGBA,
     borderTopWidth: 0,
     elevation: 0,
+  },
+  BlurView: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
 });

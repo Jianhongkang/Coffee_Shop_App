@@ -101,29 +101,26 @@ export const useStore = create(
               .toString();
           }),
         ),
-      addToFavoriteList: (type: string, id: string) =>
+      ToggleFavourite: (favourite: boolean, type: string, id: string) =>
         set(
           produce(state => {
             const targetList =
               type === 'Coffee' ? state.CoffeeList : state.BeanList;
 
             // find the index of the target element
-            const itemIndex = targetList.findIndex(
+            const targetItem = targetList.findIndex(
               (item: {id: string}) => item.id === id,
             );
 
             // if the target element exists
-            if (itemIndex !== -1) {
-              // get the target element
-              const currentItem = targetList[itemIndex];
-
-              // toggle the favourite status of the target element
-              currentItem.favourite = !currentItem.favourite;
+            if (targetItem) {
+              // toggle the favourite status of the target item
+              targetItem.favourite = !targetItem.favourite;
 
               // if the target element is now a favourite
-              if (currentItem.favourite) {
+              if (targetItem.favourite) {
                 // add the target element to the favourite list
-                state.FavoritesList.unshift(currentItem);
+                state.FavoritesList.unshift(targetItem);
               } else {
                 // remove the target element from the favourite list
                 const favoriteIndex = state.FavoritesList.findIndex(

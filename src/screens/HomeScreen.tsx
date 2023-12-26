@@ -26,6 +26,7 @@ import CustomIcon from '../components/CustomIcon';
 import CoffeType from '../components/CoffeType';
 import CoffeeCard from '../components/CoffeeCard';
 import _ from 'lodash';
+import {NavigationContainer} from '@react-navigation/native';
 // Function to extract and count categories from input data
 const getCategoriesFormData = (data: any) => {
   // Create an empty object 'temp' to store the occurrence count of each category
@@ -62,7 +63,7 @@ const getCoffeeByCategory = (category: string, data: any) => {
   return data.filter((item: any) => item.name === category);
 };
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}: any) => {
   const CoffeeList = useStore((state: any) => state.CoffeeList);
   const BeanList = useStore((state: any) => state.BeanList);
   const [categories, setCategories] = useState(
@@ -246,7 +247,14 @@ const HomeScreen = () => {
           keyExtractor={item => item.id}
           renderItem={({item}) => {
             return (
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.push('Details', {
+                    index: item.index,
+                    id: item.id,
+                    type: item.type,
+                  });
+                }}>
                 <CoffeeCard
                   id={item.id}
                   type={item.type}
@@ -276,7 +284,14 @@ const HomeScreen = () => {
           keyExtractor={item => item.id}
           renderItem={({item}) => {
             return (
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.push('Details', {
+                    index: item.index,
+                    id: item.id,
+                    type: item.type,
+                  });
+                }}>
                 <CoffeeCard
                   id={item.id}
                   type={item.type}

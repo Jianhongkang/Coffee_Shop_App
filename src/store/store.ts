@@ -106,34 +106,110 @@ export const useStore = create(
           produce(state => {
             const targetList =
               type === 'Coffee' ? state.CoffeeList : state.BeanList;
+            // Find the target item in the list
+            const targetItem = targetList.find(
+              (item: {id: string}) => item.id === id,
+            );
+            // If the target item exists and is not already a favorite
+            if (targetItem && !targetItem.favourite) {
+              targetItem.favourite = true;
+              // Add the item to the beginning of the favorites list
+              state.FavoritesList.unshift(targetItem);
+            }
+          }),
+        ),
+      deleteFromFavoriteList: (type: string, id: string) =>
+        set(
+          produce(state => {
+            const targetList =
+              type === 'Coffee' ? state.CoffeeList : state.BeanList;
 
-            // find the index of the target element
-            const itemIndex = targetList.findIndex(
+            const targetItem = targetList.find(
               (item: {id: string}) => item.id === id,
             );
 
-            // if the target element exists
-            if (itemIndex !== -1) {
-              // get the target element
-              const currentItem = targetList[itemIndex];
-
-              // toggle the favourite status of the target element
-              currentItem.favourite = !currentItem.favourite;
-
-              // if the target element is now a favourite
-              if (currentItem.favourite) {
-                // add the target element to the favourite list
-                state.FavoritesList.unshift(currentItem);
-              } else {
-                // remove the target element from the favourite list
-                const favoriteIndex = state.FavoritesList.findIndex(
-                  (item: {id: string}) => item.id === id,
-                );
-                if (favoriteIndex !== -1) {
-                  state.FavoritesList.splice(favoriteIndex, 1);
-                }
+            // If the target item exists
+            if (targetItem) {
+              targetItem.favourite = false;
+              // Find the index of the item in the favorites list
+              const favoriteIndex = state.FavoritesList.findIndex(
+                (item: {id: string}) => item.id === id,
+              );
+              // If the item is in the favorites list, remove it
+              if (favoriteIndex !== -1) {
+                state.FavoritesList.splice(favoriteIndex, 1);
               }
             }
+          }),
+        ),
+      incrementCartItemQuantity: (id: string, size: string) =>
+        set(
+          produce(state => {
+            // Find the cart item with the specified id
+            const cartItem = state.CartList.find(
+              (item: {id: string}) => item.id === id,
+            );
+
+            // Check if the cart item is found
+            if (cartItem) {
+              // Find the price with the specified size within the cart item
+              const price = cartItem.prices.find(
+                (p: {size: string}) => p.size === size,
+              );
+
+              // Check if the price is found
+              if (price) {
+                // Increment the quantity of the found price
+                price.quantity++;
+              }
+            }
+          }),
+        ),
+      decrementCartItemQuantity: (id: string, size: string) =>
+        set(
+          produce(state => {
+            // Find the cart item with the specified id
+            const cartItem = state.CartList.find(
+              (item: {id: string}) => item.id === id,
+            );
+
+            // Check if the cart item is found
+            if (cartItem) {
+              // Find the price with the specified size within the cart item
+              const price = cartItem.prices.find(
+                (p: {size: string}) => p.size === size,
+              );
+
+              // Check if the price is found
+              if (price) {
+                // Decrement the quantity of the found price
+                price.quantity--;
+              }
+            }
+          }),
+        ),
+      addToOrderHistoryListFromCart: () =>
+        set(
+          produce(state => {
+            // Calculate the total price of items in the cart
+            const cartListPrice = state.CartList.reduce(
+              (accumulator: number, currentValue: {ItemPrice: string}) =>
+                accumulator + parseFloat(currentValue.ItemPrice),
+              0,
+            );
+
+            // Create a new order with current date, time, cart list, and total price
+            const newOrder = {
+              OrderDate: `${new Date().toDateString()} ${new Date().toLocaleTimeString()}`,
+              CartList: state.CartList,
+              CartListPrice: cartListPrice.toFixed(2).toString(),
+            };
+
+            // Add the new order to the beginning of the order history list
+            state.OrderHistoryList.unshift(newOrder);
+
+            // Clear the cart list
+            state.CartList = [];
           }),
         ),
     }),

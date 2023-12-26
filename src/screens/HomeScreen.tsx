@@ -13,19 +13,13 @@ import React, {useRef, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useStore} from '../store/store';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
-import {
-  BORDERRADIUS,
-  COLORS,
-  FONTFAMILY,
-  FONTSIZE,
-  SPACING,
-} from '../theme/theme';
+import {COLORS, FONTFAMILY, FONTSIZE, SPACING} from '../theme/theme';
 import {HeaderBar} from '../components/HeaderBar';
-import {GradientBGIcon} from '../components/GradientBGIcon';
 import CustomIcon from '../components/CustomIcon';
 import CoffeType from '../components/CoffeType';
 import CoffeeCard from '../components/CoffeeCard';
 import _ from 'lodash';
+
 // Function to extract and count categories from input data
 const getCategoriesFormData = (data: any) => {
   // Create an empty object 'temp' to store the occurrence count of each category
@@ -62,7 +56,7 @@ const getCoffeeByCategory = (category: string, data: any) => {
   return data.filter((item: any) => item.name === category);
 };
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}: any) => {
   const CoffeeList = useStore((state: any) => state.CoffeeList);
   const BeanList = useStore((state: any) => state.BeanList);
   const [categories, setCategories] = useState(
@@ -151,6 +145,33 @@ const HomeScreen = () => {
     setSortedCoffee([...CoffeeList]);
     setSearchText('');
   };
+  const addToCart = useStore((state: any) => state.addToCart);
+  const calculateCartPrice = useStore((state: any) => state.calculateCartPrice);
+  const addToCartHandler = ({
+    id,
+    index,
+    name,
+    roasted,
+    imagelink_square,
+    spcial_ingredient,
+    type,
+    price,
+  }: any) => {
+    addToCart({
+      id,
+      index,
+      name,
+      roasted,
+      imagelink_square,
+      spcial_ingredient,
+      type,
+      prices: [{...price, quantity: 1}], // Creating an array of prices with quantity
+    });
+
+    calculateCartPrice();
+    navigation.navigate('Cart');
+  };
+
   return (
     <SafeAreaView style={styles.ScreenContainer}>
       <StatusBar backgroundColor={COLORS.primaryBlackHex} />
@@ -246,7 +267,14 @@ const HomeScreen = () => {
           keyExtractor={item => item.id}
           renderItem={({item}) => {
             return (
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.push('Details', {
+                    index: item.index,
+                    id: item.id,
+                    type: item.type,
+                  });
+                }}>
                 <CoffeeCard
                   id={item.id}
                   type={item.type}
@@ -256,7 +284,7 @@ const HomeScreen = () => {
                   special_ingredient={item.special_ingredient}
                   average_rating={item.average_rating}
                   price={item.prices[2]}
-                  buttonPressHandler={undefined}
+                  buttonPressHandler={addToCartHandler}
                 />
               </TouchableOpacity>
             );
@@ -276,7 +304,14 @@ const HomeScreen = () => {
           keyExtractor={item => item.id}
           renderItem={({item}) => {
             return (
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.push('Details', {
+                    index: item.index,
+                    id: item.id,
+                    type: item.type,
+                  });
+                }}>
                 <CoffeeCard
                   id={item.id}
                   type={item.type}
@@ -286,7 +321,7 @@ const HomeScreen = () => {
                   special_ingredient={item.special_ingredient}
                   average_rating={item.average_rating}
                   price={item.prices[2]}
-                  buttonPressHandler={undefined}
+                  buttonPressHandler={addToCartHandler}
                 />
               </TouchableOpacity>
             );

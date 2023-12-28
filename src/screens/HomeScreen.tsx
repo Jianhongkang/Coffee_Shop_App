@@ -153,7 +153,7 @@ const HomeScreen = ({navigation}: any) => {
     name,
     roasted,
     imagelink_square,
-    spcial_ingredient,
+    special_ingredient,
     type,
     price,
   }: any) => {
@@ -163,7 +163,7 @@ const HomeScreen = ({navigation}: any) => {
       name,
       roasted,
       imagelink_square,
-      spcial_ingredient,
+      special_ingredient,
       type,
       prices: [{...price, quantity: 1}], // Creating an array of prices with quantity
     });
@@ -284,7 +284,18 @@ const HomeScreen = ({navigation}: any) => {
                   special_ingredient={item.special_ingredient}
                   average_rating={item.average_rating}
                   price={item.prices[2]}
-                  buttonPressHandler={addToCartHandler}
+                  buttonPressHandler={() => {
+                    addToCartHandler({
+                      id: item.id,
+                      index: item.index,
+                      name: item.name,
+                      roasted: item.roasted,
+                      imagelink_square: item.imagelink_square,
+                      special_ingredient: item.special_ingredient,
+                      type: item.type,
+                      price: item.prices[2],
+                    });
+                  }}
                 />
               </TouchableOpacity>
             );
@@ -321,7 +332,18 @@ const HomeScreen = ({navigation}: any) => {
                   special_ingredient={item.special_ingredient}
                   average_rating={item.average_rating}
                   price={item.prices[2]}
-                  buttonPressHandler={addToCartHandler}
+                  buttonPressHandler={() => {
+                    addToCartHandler({
+                      id: item.id,
+                      index: item.index,
+                      name: item.name,
+                      roasted: item.roasted,
+                      imagelink_square: item.imagelink_square,
+                      special_ingredient: item.special_ingredient,
+                      type: item.type,
+                      price: item.prices[2],
+                    });
+                  }}
                 />
               </TouchableOpacity>
             );

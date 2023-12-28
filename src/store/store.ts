@@ -81,24 +81,45 @@ export const useStore = create(
       calculateCartPrice: () =>
         set(
           produce(state => {
-            // initialize the cart price to 0
+            // Initialize the cart price to 0
             state.CartPrice = state.CartList.reduce(
-              (totalPrice: any, item: {prices: any[]; ItemPrice: any}) => {
-                // calculate the price of each item
+              (
+                totalPrice: any,
+                item: {prices: any[]; id: any; ItemPrice: any},
+              ) => {
+                // Calculate the price of each item
                 const itemPrice = item.prices.reduce(
-                  (total: number, price: {price: string; quantity: number}) =>
-                    total + parseFloat(price.price) * price.quantity,
+                  (
+                    itemTotal: number,
+                    price: {price: string; quantity: any},
+                  ) => {
+                    const priceValue = parseFloat(price.price);
+                    const quantityValue = price.quantity;
+
+                    if (isNaN(priceValue) || isNaN(quantityValue)) {
+                      console.error(
+                        `Invalid price or quantity for item with id ${item.id}`,
+                      );
+                      return itemTotal; // Skip this item if price or quantity is not a number
+                    }
+
+                    // Calculate the item price and add it to the total
+                    return itemTotal + priceValue * quantityValue;
+                  },
                   0,
                 );
-                // set the price of the item
-                item.ItemPrice = itemPrice.toFixed(2).toString();
-                // add the price of the item to the total price
+
+                // Round the item price to 2 decimal places
+                item.ItemPrice = itemPrice.toFixed(2);
+
+                // Add the rounded item price to the total price
                 return totalPrice + itemPrice;
               },
               0,
-            )
-              .toFixed(2)
-              .toString();
+            );
+
+            // Round the total cart price to 2 decimal places
+            state.CartPrice = state.CartPrice.toFixed(2);
           }),
         ),
       addToFavoriteList: (type: string, id: string) =>
@@ -165,29 +186,45 @@ export const useStore = create(
             }
           }),
         ),
+
       decrementCartItemQuantity: (id: string, size: string) =>
         set(
           produce(state => {
-            // Find the cart item with the specified id
-            const cartItem = state.CartList.find(
+            // Find the index of the cart item with the specified id
+            const cartItemIndex = state.CartList.findIndex(
               (item: {id: string}) => item.id === id,
             );
 
             // Check if the cart item is found
-            if (cartItem) {
+            if (cartItemIndex !== -1) {
               // Find the price with the specified size within the cart item
-              const price = cartItem.prices.find(
+              const priceIndex = state.CartList[cartItemIndex].prices.findIndex(
                 (p: {size: string}) => p.size === size,
               );
 
               // Check if the price is found
-              if (price) {
+              if (priceIndex !== -1) {
                 // Decrement the quantity of the found price
-                price.quantity--;
+                state.CartList[cartItemIndex].prices[priceIndex].quantity--;
+
+                // Check if the quantity is now zero, and remove the item from CartList
+                if (
+                  state.CartList[cartItemIndex].prices[priceIndex].quantity ===
+                  0
+                ) {
+                  // Remove the price from the prices array
+                  state.CartList[cartItemIndex].prices.splice(priceIndex, 1);
+
+                  // Check if the prices array is now empty, and remove the cart item
+                  if (state.CartList[cartItemIndex].prices.length === 0) {
+                    state.CartList.splice(cartItemIndex, 1);
+                  }
+                }
               }
             }
           }),
         ),
+
       addToOrderHistoryListFromCart: () =>
         set(
           produce(state => {

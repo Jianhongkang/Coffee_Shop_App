@@ -1,6 +1,4 @@
 import {
-  Image,
-  ImageBackground,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -53,7 +51,7 @@ const DetailsScreen = ({navigation, route}: any) => {
     name,
     roasted,
     imagelink_square,
-    spcial_ingredient,
+    special_ingredient,
     type,
     price,
   }: any) => {
@@ -63,7 +61,7 @@ const DetailsScreen = ({navigation, route}: any) => {
       name,
       roasted,
       imagelink_square,
-      spcial_ingredient,
+      special_ingredient,
       type,
       prices: [{...price, quantity: 1}], // Creating an array of prices with quantity
     });
@@ -136,7 +134,18 @@ const DetailsScreen = ({navigation, route}: any) => {
 
         <PaymentFooter
           price={price}
-          buttonPressHandler={addToCartHandler}
+          buttonPressHandler={() => {
+            addToCartHandler({
+              id: ItemOfIndex.id,
+              index: ItemOfIndex.index,
+              name: ItemOfIndex.name,
+              roasted: ItemOfIndex.roasted,
+              imagelink_square: ItemOfIndex.imagelink_square,
+              special_ingredient: ItemOfIndex.special_ingredient,
+              type: ItemOfIndex.type,
+              price: price,
+            });
+          }}
           buttonTitle="Add to Card"
         />
       </ScrollView>

@@ -32,7 +32,6 @@ interface ImagebBackgroundInfoProps {
   roasted: string;
   favourite: boolean;
   BackHandler?: any;
-  navigation?: any;
   ToggleFavourite: any;
 }
 const ImagebBackgroundInfo: React.FC<ImagebBackgroundInfoProps> = ({
@@ -48,7 +47,6 @@ const ImagebBackgroundInfo: React.FC<ImagebBackgroundInfoProps> = ({
   roasted,
   favourite,
   BackHandler,
-  navigation,
   ToggleFavourite,
 }) => {
   return (
@@ -176,7 +174,7 @@ const styles = StyleSheet.create({
   ImageHeaderBarWithoutBack: {
     position: 'absolute',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     width: '100%',
     padding: 30,
   },
@@ -206,8 +204,8 @@ const styles = StyleSheet.create({
   },
   ItemSubtitleText: {
     fontFamily: FONTFAMILY.poppins_medium,
-    color: COLORS.primaryWhiteHex,
-    fontSize: FONTSIZE.size_16,
+    color: COLORS.secondaryLightGreyHex,
+    fontSize: FONTSIZE.size_14,
   },
   ItemPropertiesContainer: {
     flexDirection: 'row',

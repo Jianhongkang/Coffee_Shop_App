@@ -16,7 +16,7 @@ import {
   SPACING,
 } from '../theme/theme';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import Imagebackgroundinfo from '../components/ImageBackgroundInfo';
+import ImageBackgroundInfo from '../components/ImageBackgroundInfo';
 import {useStore} from '../store/store';
 import PaymentFooter from '../components/PaymentFooter';
 
@@ -76,7 +76,7 @@ const DetailsScreen = ({navigation, route}: any) => {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.ScrollViewFlex}>
-        <Imagebackgroundinfo
+        <ImageBackgroundInfo
           EnableBackHandler={true}
           id={ItemOfIndex.id}
           type={ItemOfIndex.type}

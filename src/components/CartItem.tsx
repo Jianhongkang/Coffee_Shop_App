@@ -128,59 +128,6 @@ const CartItem: React.FC<CartItemProps> = ({
               style={styles.CartItemSingleImage}
             />
           </View>
-          {/* <View style={styles.CartItemSingleInfoContainer}>
-            <View>
-              <Text style={styles.CartItemTitle}>{name}</Text>
-              <Text style={styles.CartItemSubtitle}>{special_ingredient}</Text>
-            </View>
-            <View style={styles.CartItemSingleSizeContainer}>
-              <View style={styles.SizeBox}>
-                <Text
-                  style={[
-                    styles.SizeText,
-                    {
-                      fontSize:
-                        type == 'Bean' ? FONTSIZE.size_12 : FONTSIZE.size_16,
-                    },
-                  ]}>
-                  {prices[0].size}
-                </Text>
-              </View>
-              <Text style={styles.SizeCurrency}>
-                {prices[0].currency}
-                <Text style={styles.SizePrice}> {prices[0].price}</Text>
-              </Text>
-            </View>
-            <View style={styles.CartItemSingleQuantityContainer}>
-              <TouchableOpacity
-                style={styles.CartItemIcon}
-                onPress={() => {
-                  decrementCartItemQuantityHandler(id, prices[0].size);
-                }}>
-                <CustomIcon
-                  name="minus"
-                  color={COLORS.primaryWhiteHex}
-                  size={FONTSIZE.size_10}
-                />
-              </TouchableOpacity>
-              <View style={styles.CartItemQuantityContainer}>
-                <Text style={styles.CartItemQuantityText}>
-                  {prices[0].quantity}
-                </Text>
-              </View>
-              <TouchableOpacity
-                style={styles.CartItemIcon}
-                onPress={() => {
-                  incrementCartItemQuantityHandler(id, prices[0].size);
-                }}>
-                <CustomIcon
-                  name="add"
-                  color={COLORS.primaryWhiteHex}
-                  size={FONTSIZE.size_10}
-                />
-              </TouchableOpacity>
-            </View>
-          </View> */}
           <View style={styles.CartItemSingleInfoContainer}>
             <View>
               <Text style={styles.CartItemTitle}>{name}</Text>

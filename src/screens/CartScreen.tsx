@@ -38,7 +38,9 @@ const CartScreen = ({navigation}: any) => {
     calculateCartPrice();
   };
 
-  // console.log(CartPrice);
+  const addToPayHandler = () => {
+    navigation.navigate('Payment');
+  };
 
   return (
     <SafeAreaView style={styles.ScreenContainer}>
@@ -89,7 +91,7 @@ const CartScreen = ({navigation}: any) => {
           {CartList.length > 0 ? (
             <PaymentFooter
               price={{price: CartPrice, currency: '$'}}
-              buttonPressHandler={() => {}}
+              buttonPressHandler={addToPayHandler}
               buttonTitle="Pay"
             />
           ) : (

@@ -33,6 +33,6 @@ const styles = StyleSheet.create({
     color: COLORS.primaryWhiteHex,
     fontSize: FONTSIZE.size_20,
     fontFamily: FONTFAMILY.poppins_semibold,
-    textTransform: 'uppercase',
+    // textTransform: 'uppercase',
   },
 });

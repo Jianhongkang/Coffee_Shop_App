@@ -179,7 +179,7 @@ const HomeScreen = ({navigation}: any) => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.ScrollViewFlex}>
         {/* App Header */}
-        <HeaderBar title="panda coffee" />
+        <HeaderBar title="Panda Coffee" />
         <Text style={styles.ScreenTitle}>
           Find the best {'\n'}coffee for you
         </Text>
@@ -192,7 +192,7 @@ const HomeScreen = ({navigation}: any) => {
             }}>
             <CustomIcon
               name="search"
-              size={FONTSIZE.size_18}
+              size={FONTSIZE.size_20}
               color={
                 searchText.length > 0
                   ? COLORS.primaryOrangeHex
@@ -382,10 +382,10 @@ const styles = StyleSheet.create({
   },
   SearchInput: {
     flex: 1,
-    height: SPACING.space_20 * 2,
+    height: SPACING.space_20 * 2.5,
     color: COLORS.primaryWhiteHex,
     fontFamily: FONTFAMILY.poppins_regular,
-    fontSize: FONTSIZE.size_16,
+    fontSize: FONTSIZE.size_18,
     paddingLeft: SPACING.space_20,
   },
   CategoryScrollView: {

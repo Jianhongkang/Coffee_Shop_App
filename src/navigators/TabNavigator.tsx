@@ -7,6 +7,7 @@ import FavoritesScreen from '../screens/FavoritesScreen';
 import {COLORS} from '../theme/theme';
 import CustomIcon from '../components/CustomIcon';
 import {BlurView} from '@react-native-community/blur';
+import OrderHistoryScreen from '../screens/OrderHistoryScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -69,7 +70,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="History"
-        component={CartScreen}
+        component={OrderHistoryScreen}
         options={{
           tabBarIcon: ({focused, color, size}) => (
             <CustomIcon

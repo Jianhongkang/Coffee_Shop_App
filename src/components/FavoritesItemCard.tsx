@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     borderRadius: BORDERRADIUS.radius_25,
     overflow: 'hidden',
     marginBottom: SPACING.space_20,
+    marginHorizontal: SPACING.space_20,
   },
   ContainerLinearGradient: {
     gap: SPACING.space_10,

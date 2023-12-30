@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import {HeaderBar} from '../components/HeaderBar';
-import {COLORS} from '../theme/theme';
+import {COLORS, SPACING} from '../theme/theme';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import {useStore} from '../store/store';
 import PaymentFooter from '../components/PaymentFooter';
@@ -39,7 +39,7 @@ const CartScreen = ({navigation}: any) => {
   };
 
   const addToPayHandler = () => {
-    navigation.navigate('Payment');
+    navigation.push('Payment', {price: CartPrice});
   };
 
   return (
@@ -51,42 +51,43 @@ const CartScreen = ({navigation}: any) => {
         {/* Cart Header */}
         <View
           style={[styles.ScrollViewInnerView, {marginBottom: tabBarHeight}]}>
-          <HeaderBar title="Cart" />
-          {/* Cart Items */}
-          {CartList.length == 0 ? (
-            <EmptyListAnimation title={'Cart is Empty'} />
-          ) : (
-            <View>
-              {CartList.map((data: any) => (
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.push('Details', {
-                      index: data.index,
-                      id: data.id,
-                      type: data.type,
-                    });
-                  }}
-                  key={data.id}>
-                  <CartItem
-                    id={data.id}
-                    name={data.name}
-                    imagelink_square={data.imagelink_square}
-                    special_ingredient={data.special_ingredient}
-                    roasted={data.roasted}
-                    prices={data.prices}
-                    type={data.type}
-                    incrementCartItemQuantityHandler={
-                      incrementCartItemQuantityHandler
-                    }
-                    decrementCartItemQuantityHandler={
-                      decrementCartItemQuantityHandler
-                    }
-                  />
-                </TouchableOpacity>
-              ))}
-            </View>
-          )}
-
+          <View style={styles.ItemContainer}>
+            <HeaderBar title="Cart" />
+            {/* Cart Items */}
+            {CartList.length == 0 ? (
+              <EmptyListAnimation title={'Cart is Empty'} />
+            ) : (
+              <View style={styles.ListItemContainer}>
+                {CartList.map((data: any) => (
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.push('Details', {
+                        index: data.index,
+                        id: data.id,
+                        type: data.type,
+                      });
+                    }}
+                    key={data.id}>
+                    <CartItem
+                      id={data.id}
+                      name={data.name}
+                      imagelink_square={data.imagelink_square}
+                      special_ingredient={data.special_ingredient}
+                      roasted={data.roasted}
+                      prices={data.prices}
+                      type={data.type}
+                      incrementCartItemQuantityHandler={
+                        incrementCartItemQuantityHandler
+                      }
+                      decrementCartItemQuantityHandler={
+                        decrementCartItemQuantityHandler
+                      }
+                    />
+                  </TouchableOpacity>
+                ))}
+              </View>
+            )}
+          </View>
           {/* <PaymentFooter /> */}
           {CartList.length > 0 ? (
             <PaymentFooter
@@ -117,4 +118,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
   },
+  ItemContainer: {
+    flex: 1,
+  },
+  ListItemContainer: {},
 });

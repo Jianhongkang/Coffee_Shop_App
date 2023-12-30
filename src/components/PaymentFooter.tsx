@@ -43,7 +43,7 @@ export default PaymentFooter;
 const styles = StyleSheet.create({
   PriceFooter: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     padding: SPACING.space_20,
     gap: SPACING.space_20,

@@ -62,7 +62,7 @@ const ImagebBackgroundInfo: React.FC<ImagebBackgroundInfoProps> = ({
               }}>
               <GradientBGIcon
                 name="left"
-                size={FONTSIZE.size_16}
+                size={FONTSIZE.size_20}
                 color={COLORS.primaryLightGreyHex}
               />
             </TouchableOpacity>
@@ -72,7 +72,7 @@ const ImagebBackgroundInfo: React.FC<ImagebBackgroundInfoProps> = ({
               }}>
               <GradientBGIcon
                 name="like"
-                size={FONTSIZE.size_16}
+                size={FONTSIZE.size_20}
                 color={
                   favourite ? COLORS.primaryRedHex : COLORS.primaryLightGreyHex
                 }
@@ -90,7 +90,7 @@ const ImagebBackgroundInfo: React.FC<ImagebBackgroundInfoProps> = ({
                 color={
                   favourite ? COLORS.primaryRedHex : COLORS.primaryLightGreyHex
                 }
-                size={FONTSIZE.size_16}
+                size={FONTSIZE.size_20}
               />
             </TouchableOpacity>
           </View>
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
   ItemTitleText: {
     fontFamily: FONTFAMILY.poppins_semibold,
     color: COLORS.primaryWhiteHex,
-    fontSize: FONTSIZE.size_24,
+    fontSize: FONTSIZE.size_20,
   },
   ItemSubtitleText: {
     fontFamily: FONTFAMILY.poppins_medium,

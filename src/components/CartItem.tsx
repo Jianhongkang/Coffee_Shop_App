@@ -93,7 +93,7 @@ const CartItem: React.FC<CartItemProps> = ({
                   <CustomIcon
                     name="minus"
                     color={COLORS.primaryWhiteHex}
-                    size={FONTSIZE.size_14}
+                    size={FONTSIZE.size_12}
                   />
                 </TouchableOpacity>
                 <View style={styles.CartItemQuantityContainer}>
@@ -109,7 +109,7 @@ const CartItem: React.FC<CartItemProps> = ({
                   <CustomIcon
                     name="add"
                     color={COLORS.primaryWhiteHex}
-                    size={FONTSIZE.size_14}
+                    size={FONTSIZE.size_12}
                   />
                 </TouchableOpacity>
               </View>
@@ -160,7 +160,7 @@ const CartItem: React.FC<CartItemProps> = ({
                 <CustomIcon
                   name="minus"
                   color={COLORS.primaryWhiteHex}
-                  size={FONTSIZE.size_10}
+                  size={FONTSIZE.size_12}
                 />
               </TouchableOpacity>
               <View style={styles.CartItemQuantityContainer}>
@@ -176,7 +176,7 @@ const CartItem: React.FC<CartItemProps> = ({
                 <CustomIcon
                   name="add"
                   color={COLORS.primaryWhiteHex}
-                  size={FONTSIZE.size_10}
+                  size={FONTSIZE.size_12}
                 />
               </TouchableOpacity>
             </View>
@@ -193,14 +193,16 @@ const styles = StyleSheet.create({
   CartItemLinearGradient: {
     flex: 1,
     gap: SPACING.space_12,
-    padding: SPACING.space_20,
+    padding: SPACING.space_12,
     borderRadius: BORDERRADIUS.radius_25,
     marginBottom: SPACING.space_20,
+    marginHorizontal: SPACING.space_20,
   },
   CartItemRow: {
     flexDirection: 'row',
-    gap: SPACING.space_20,
+    gap: SPACING.space_12,
     flex: 1,
+    // marginHorizontal: SPACING.space_20,
   },
   CartItemImage: {
     width: 130,
@@ -238,14 +240,14 @@ const styles = StyleSheet.create({
   CartItemSizeRowContainer: {
     flex: 1,
     alignItems: 'center',
-    gap: SPACING.space_20,
+    gap: SPACING.space_12,
     flexDirection: 'row',
     justifyContent: 'center',
   },
   CartItemSizeValueContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: SPACING.space_20,
+    gap: SPACING.space_10,
   },
   SizeBox: {
     backgroundColor: COLORS.primaryBlackHex,
@@ -290,35 +292,36 @@ const styles = StyleSheet.create({
   CartItemSingleLinearGradient: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: SPACING.space_20,
+    padding: SPACING.space_12,
     gap: SPACING.space_12,
     borderRadius: BORDERRADIUS.radius_25,
     marginBottom: SPACING.space_20,
+    marginHorizontal: SPACING.space_20,
   },
   CartItemSingleImage: {
-    width: 150,
-    height: 150,
+    width: 130,
+    height: 130,
     borderRadius: BORDERRADIUS.radius_25,
   },
   CartItemSingleInfoContainer: {
     flex: 1,
     alignSelf: 'stretch',
     justifyContent: 'space-between',
-    paddingHorizontal: SPACING.space_12,
-    paddingVertical: SPACING.space_4,
   },
 
   CartItemSingleSizeContainer: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    marginLeft: -40,
+    marginLeft: -24,
+    marginBottom: 6,
+    marginTop: 6,
   },
 
   CartItemSingleQuantityContainer: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    marginLeft: -20,
+    marginLeft: -4,
   },
 });

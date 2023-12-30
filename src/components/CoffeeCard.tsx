@@ -1,4 +1,5 @@
 import {
+  Alert,
   Dimensions,
   ImageBackground,
   ImageProps,
@@ -99,8 +100,8 @@ const styles = StyleSheet.create({
     borderRadius: BORDERRADIUS.radius_25,
   },
   CardImageBG: {
-    width: CARD_WIDTH,
-    height: CARD_WIDTH,
+    width: CARD_WIDTH * 0.8,
+    height: CARD_WIDTH * 0.8,
     borderRadius: BORDERRADIUS.radius_20,
     marginBottom: SPACING.space_15,
     overflow: 'hidden',
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
   Subtitle: {
     fontFamily: FONTFAMILY.poppins_medium,
     color: COLORS.primaryWhiteHex,
-    fontSize: FONTSIZE.size_12,
+    fontSize: FONTSIZE.size_10,
   },
   CardFooterRow: {
     flexDirection: 'row',

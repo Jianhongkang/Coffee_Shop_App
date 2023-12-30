@@ -1,7 +1,6 @@
 package com.coffee_shop_app;
 
 import android.os.Bundle;
-import org.devio.rn.splashscreen.SplashScreen;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
@@ -10,30 +9,22 @@ import com.facebook.react.defaults.DefaultReactActivityDelegate;
 public class MainActivity extends ReactActivity {
 
   /**
-   * Returns the name of the main component registered from JavaScript. This is
-   * used to schedule
+   * Returns the name of the main component registered from JavaScript. This is used to schedule
    * rendering of the component.
    */
   @Override
   protected String getMainComponentName() {
     return "Coffee_Shop_App";
   }
-
-  // react-native-screens package requires one additional configuration step to
-  // properly work on Android devices.
+  // react-native-screens package requires one additional configuration step to properly work on Android devices.
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    // savedInstanceState = null;
-    // super.onCreate(savedInstanceState);
-    SplashScreen.show(this); // here
+    savedInstanceState = null;
     super.onCreate(savedInstanceState);
   }
-
   /**
-   * Returns the instance of the {@link ReactActivityDelegate}. Here we use a util
-   * class {@link
-   * DefaultReactActivityDelegate} which allows you to easily enable Fabric and
-   * Concurrent React
+   * Returns the instance of the {@link ReactActivityDelegate}. Here we use a util class {@link
+   * DefaultReactActivityDelegate} which allows you to easily enable Fabric and Concurrent React
    * (aka React 18) with two boolean flags.
    */
   @Override

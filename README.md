@@ -8,15 +8,32 @@ The Coffee Shop App is a fully functional mobile application built with React Na
 ## Features
 
 - **Browse Coffees and Coffee Beans**: Explore a curated list of various coffees and coffee beans.
+
+![image](https://github.com/user-attachments/assets/b9b82ba0-e86c-4258-a478-34671b8cd656)
+
 - **Search Functionality**: Quickly find your desired coffee by name or type.
+
+![image](https://github.com/user-attachments/assets/e0ee23aa-62f5-46a6-a51a-56d93b17c95d)
+
 - **Product Details**: View detailed information, including:
   - Special Ingredients
   - Roast Level
   - Ratings
   - Description
+
+![image](https://github.com/user-attachments/assets/d8eee41e-d2b9-480f-b423-b0b5241bb2c9)
+
 - **Favorites**: Mark your favorite coffees for easy access later.
+
+![image](https://github.com/user-attachments/assets/2d095d12-b940-43ed-84f8-5ba8721b72f6)
+
 - **Cart Management**: Add items to your cart and manage your selections.
+
+![image](https://github.com/user-attachments/assets/ff419664-ae0c-4d7b-846a-d828a7abe470)
+
 - **Order Placement**: Complete your purchase seamlessly.
+
+![image](https://github.com/user-attachments/assets/1fc72bb2-d462-4165-9163-a09f6f29a593)
 
 ## Demo
 
